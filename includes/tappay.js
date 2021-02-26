@@ -7,7 +7,9 @@ jQuery(function() {
             TPDirect.card.onUpdate(function (e) {
                 // if false !== e.hasError then pass
                 var submitOrder = jQuery('button#place_order');
-                if (true === e.canGetPrime) {
+                var tappayChecked = jQuery('#payment_method_tappay').checked;
+
+                if (true === tappayChecked && true === e.canGetPrime) {
                 } else {
                 }
             });
