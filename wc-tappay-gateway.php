@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WooCommerce TapPay Gateway
  * Description: Adds TapPay to your WooCommerce
- * Version: 1.0
+ * Version: 1.2
  * Author: Kuo, Yu-Min
  * Author URI: https://blog.cornguo.net
  * License: Reserved
