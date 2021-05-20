@@ -242,9 +242,20 @@ EOT;
     private function _payByPrime($order, $prime) {
         // prepare data send to gateway
         $detailText = array();
+        $detailLength = 0;
 
         foreach ($order->get_items() as $itemKey => $item) {
-            $detailText[] = $item->get_name() . ' x' . $item->get_quantity() . PHP_EOL;
+            $item = $item->get_name() . ' x' . $item->get_quantity();
+            $itemLength = strlen($item);
+
+            // detail text length must < 100
+            if ($detailLength + $itemLength < 90) {
+                $detailLength += $itemLength;
+                $detailText[] = $text;
+            } else {
+                $detailText[] = '...';
+                break;
+            }
         }
 
         $amount = $order->get_total();
