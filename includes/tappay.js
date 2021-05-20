@@ -7,10 +7,10 @@ jQuery(function() {
             TPDirect.card.onUpdate(function (e) {
                 // if false !== e.hasError then pass
                 var submitOrder = jQuery('button#place_order');
-                var tappayChecked = jQuery('#payment_method_tappay').checked;
+                var tappayChecked = jQuery('#payment_method_tappay').is(':checked');
 
                 if (true === tappayChecked && true === e.canGetPrime) {
-                } else {
+                    submitOrder.removeAttr('disabled');
                 }
             });
 
@@ -58,8 +58,12 @@ jQuery(function() {
     jQuery('body').on('change', function (e) {
         wc_tappay.initialize();
 
-        if ('checked' === jQuery('#payment_method_tappay').attr('checked')) {
+        var submitOrder = jQuery('button#place_order');
+        submitOrder.removeAttr('disabled');
+
+        if (true === jQuery('#payment_method_tappay').is(':checked')) {
             jQuery('form.woocommerce-checkout').on('checkout_place_order', wc_tappay.requestToken);
+            submitOrder.attr('disabled', 'disabled');
         } else {
             jQuery('form.woocommerce-checkout').off('checkout_place_order', wc_tappay.requestToken);
         }
